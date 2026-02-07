@@ -11,7 +11,8 @@ def evaluate(profile: object) -> str:
     """
     Evaluate the profile and return the evaluation.
     """
-    return get_groq_response(
+    response =  get_groq_response(
         system_prompt=SYSTEM_PROMPT,
         user_prompt=json.dumps(profile)
     )
+    return json.loads(response)
