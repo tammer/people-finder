@@ -1,5 +1,5 @@
 import json
-from core_signal import search
+from core_signal import search, collect
 
 # Load query from query1.json
 with open("query1.json", "r") as file:
@@ -10,6 +10,9 @@ candidates = search(query)
 print(len(candidates))
 print(candidates[0:10])
 
+for candidate in candidates[0:5]:
+    profile = collect(candidate)
+    print(json.dumps(profile, indent=2))
 
 
 
