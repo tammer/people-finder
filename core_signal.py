@@ -3,7 +3,7 @@ import os
 import requests
 from dotenv import load_dotenv
 
-from supa import read_response
+from supa import read_response, write_response
 
 load_dotenv()
 
@@ -15,7 +15,9 @@ def collect(id: int) -> dict:
     cached = read_response(id)
     if cached is not None:
         return cached
-    return raw_collect(id)
+    profile = raw_collect(id)
+    write_response(id, profile)
+    return profile
 
 
 def raw_collect(id: int) -> dict:
