@@ -1,0 +1,101 @@
+{
+    "query": {
+      "bool": {
+        "must": [
+          {
+            "bool": {
+              "should": [
+                {
+                  "match": {
+                    "active_experience_title": "software engineer"
+                  }
+                },
+                {
+                  "nested": {
+                    "path": "experience",
+                    "query": {
+                      "match": {
+                        "experience.position_title": "software engineer"
+                      }
+                    }
+                  }
+                }
+              ],
+              "minimum_should_match": 1
+            }
+          },
+          {
+            "bool": {
+              "should": [
+                {
+                  "match": {
+                    "location_regions": "Ontario"
+                  }
+                },
+                {
+                  "nested": {
+                    "path": "experience",
+                    "query": {
+                      "match": {
+                        "experience.location": "Ontario"
+                      }
+                    }
+                  }
+                }
+              ],
+              "minimum_should_match": 1
+            }
+          },
+          {
+            "nested": {
+              "path": "education",
+              "query": {
+                "terms": {
+                  "education.institution_country_iso2": [
+                    "CA"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "bool": {
+              "should": [
+                {
+                  "match": {
+                    "inferred_skills": "software"
+                  }
+                },
+                {
+                  "match": {
+                    "inferred_skills": "hardware"
+                  }
+                },
+                {
+                  "match": {
+                    "inferred_skills": "machine learning"
+                  }
+                },
+                {
+                  "match": {
+                    "historical_skills": "software"
+                  }
+                },
+                {
+                  "match": {
+                    "historical_skills": "hardware"
+                  }
+                },
+                {
+                  "match": {
+                    "historical_skills": "machine learning"
+                  }
+                }
+              ],
+              "minimum_should_match": 1
+            }
+          }
+        ]
+      }
+    }
+  }

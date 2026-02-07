@@ -32,13 +32,12 @@ def check_if_eliminated(id):
 
 
 # Load query from query1.json
-with open("query1.json", "r") as file:
+with open("query2.json", "r") as file:
     query = json.load(file)
 
 candidates = search(query)
 
 print(len(candidates))
-print(candidates[0:10])
 
 for candidate in candidates:
     if check_if_eliminated(candidate):
@@ -47,33 +46,10 @@ for candidate in candidates:
     profile = collect(candidate)
 
     evaluation = evaluate(profile)
-    if evaluation["total_score"] < 7:
+    if evaluation["total_score"] < 6:
         print(f"Eliminating {candidate} because it has a total score of {evaluation['total_score']}")
         elinate(candidate)
     else:
         print(f"Keeping {candidate} because it has a total score of {evaluation['total_score']}")
         print(evaluation)
-
-
-
-
-
-
-
-# # Collect single employee by ID (from first search result)
-# # Iterate through the search results, collect profiles, evaluate each, and print the evaluation
-# for result in search_results:
-#     employee_id = str(result)
-#     if check_if_eliminated(employee_id):
-#         print(f"Skipping {employee_id} because it has been eliminated")
-#         continue
-#     profile = collect(employee_id)
-#     evaluation = evaluate(profile)
-#     evaluation = json.loads(evaluation)
-#     if evaluation["total_score"] < 7:
-#         print(f"Eliminating {employee_id} because it has a total score of {evaluation['total_score']}")
-#         elinate(employee_id)
-#         continue
-
-#     print(evaluation)
 

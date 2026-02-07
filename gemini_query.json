@@ -1,0 +1,106 @@
+{
+    "query": {
+      "bool": {
+        "must": [
+          {
+            "bool": {
+              "should": [
+                { "match": { "location": "Ontario" } },
+                { "match": { "location": "Toronto" } },
+                { "match": { "location": "Ottawa" } },
+                { "match": { "location": "Waterloo" } },
+                { "match": { "location": "Kitchener" } },
+                { "match": { "location": "Mississauga" } }
+              ],
+              "minimum_should_match": 1
+            }
+          },
+          {
+            "nested": {
+              "path": "education",
+              "query": {
+                "bool": {
+                  "must": [
+                    {
+                      "range": {
+                        "education.date_to_year": {
+                          "gte": 2013
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "nested": {
+              "path": "education",
+              "query": {
+                "bool": {
+                  "should": [
+                    { "match": { "education.institution": "Waterloo" } },
+                    { "match": { "education.institution": "Toronto" } },
+                    { "match": { "education.institution": "UBC" } },
+                    { "match": { "education.institution": "McGill" } },
+                    { "match": { "education.institution": "McMaster" } },
+                    { "match": { "education.institution": "Queen's" } },
+                    { "match": { "education.institution": "Western" } },
+                    { "match": { "education.institution": "Ryerson" } },
+                    { "match": { "education.institution": "Carleton" } },
+                    { "match": { "education.institution": "Ottawa" } }
+                  ],
+                  "minimum_should_match": 1
+                }
+              }
+            }
+          },
+          {
+            "nested": {
+              "path": "education",
+              "query": {
+                "bool": {
+                  "should": [
+                    { "match": { "education.program": "Computer" } },
+                    { "match": { "education.program": "Software" } },
+                    { "match": { "education.program": "Engineering" } },
+                    { "match": { "education.program": "Electrical" } },
+                    { "match": { "education.program": "Data" } },
+                    { "match": { "education.program": "Systems" } },
+                    { "match": { "education.program": "Math" } },
+                    { "match": { "education.program": "Physics" } }
+                  ],
+                  "minimum_should_match": 1
+                }
+              }
+            }
+          },
+          {
+            "nested": {
+              "path": "experience",
+              "query": {
+                "bool": {
+                  "must": [
+                    { "match": { "experience.is_current": 1 } },
+                    {
+                      "bool": {
+                        "should": [
+                          { "match": { "experience.title": "Software" } },
+                          { "match": { "experience.title": "Hardware" } },
+                          { "match": { "experience.title": "Engineer" } },
+                          { "match": { "experience.title": "Developer" } },
+                          { "match": { "experience.title": "Embedded" } },
+                          { "match": { "experience.title": "Data" } }
+                        ],
+                        "minimum_should_match": 1
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }

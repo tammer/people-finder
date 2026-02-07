@@ -24,6 +24,7 @@ def raw_collect(id: int) -> dict:
     """
     Collect the profile of a person by their  ID.
     """
+    print("Warning: Calling Core Signal API to collect profile for id:", id)
     url = f"https://api.coresignal.com/cdapi/v2/employee_multi_source/collect/{id}"
     headers = {
         "apikey": os.getenv("CORESIGNAL_API_KEY"),
