@@ -41,10 +41,11 @@ print(len(candidates))
 print(candidates[0:10])
 
 for candidate in candidates:
-    profile = collect(candidate)
     if check_if_eliminated(candidate):
         print(f"Skipping {candidate} because it has been eliminated")
         continue
+    profile = collect(candidate)
+
     evaluation = evaluate(profile)
     if evaluation["total_score"] < 7:
         print(f"Eliminating {candidate} because it has a total score of {evaluation['total_score']}")
