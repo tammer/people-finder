@@ -42,5 +42,9 @@ def search(query: dict) -> list:
         "Content-Type": "application/json",
     }
     response = requests.post(url, headers=headers, json=query)
-    return response.json()
+    response = response.json()
+    ids = []
+    for i in response:
+        ids.append(int(i))
+    return ids
 

@@ -1,0 +1,1617 @@
+{
+    "mappings": {
+        "properties": {
+            "id": {
+                "type": "long"
+            },
+            "parent_id": {
+                "type": "long"
+            },
+            "is_parent": {
+                "type": "byte"
+            },
+            "full_name": {
+                "type": "text"
+            },
+            "first_name": {
+                "type": "text"
+            },
+            "last_name": {
+                "type": "text"
+            },
+            "headline": {
+                "type": "text",
+                "fields": {
+                    "exact": {
+                        "type": "keyword",
+                        "null_value": "NULL"
+                    }
+                }
+            },
+            "checked_at": {
+                "type": "date",
+                "format": "yyyy-MM-dd HH:mm:ss"
+            },
+            "received_at": {
+                "type": "date",
+                "format": "yyyy-MM-dd HH:mm:ss"
+            },
+            "public_profile_id": {
+                "type": "text"
+            },
+            "profile_url": {
+                "type": "text",
+                "fields": {
+                    "exact": {
+                        "type": "keyword"
+                    }
+                }
+            },
+            "location": {
+                "type": "text"
+            },
+            "industry": {
+                "type": "text",
+                "fields": {
+                    "exact": {
+                        "type": "keyword",
+                        "null_value": "NULL"
+                    }
+                }
+            },
+            "summary": {
+                "type": "text"
+            },
+            "services": {
+                "type": "text"
+            },
+            "profile_photo_url": {
+                "type": "keyword",
+                "index": false,
+                "doc_values": false
+            },
+            "country": {
+                "type": "keyword",
+                "null_value": "NULL"
+            },
+            "country_iso_2": {
+                "type": "keyword",
+                "null_value": "NULL"
+            },
+            "country_iso_3": {
+                "type": "keyword",
+                "null_value": "NULL"
+            },
+            "recommendations_count": {
+                "type": "long",
+                "null_value": -1
+            },
+            "connections_count": {
+                "type": "long",
+                "null_value": -1
+            },
+            "follower_count": {
+                "type": "long",
+                "null_value": -1
+            },
+            "experience_count": {
+                "type": "long",
+                "null_value": -1
+            },
+            "shorthand_name": {
+                "type": "keyword"
+            },
+            "canonical_shorthand_name": {
+                "type": "keyword"
+            },
+            "created_at": {
+                "type": "date",
+                "format": "yyyy-MM-dd HH:mm:ss"
+            },
+            "updated_at": {
+                "type": "date",
+                "format": "yyyy-MM-dd HH:mm:ss"
+            },
+            "deleted": {
+                "type": "byte"
+            },
+            "regions": {
+                "type": "nested",
+                "properties": {
+                    "region": {
+                        "type": "keyword"
+                    }
+                }
+            },
+            "shorthand_names": {
+                "type": "nested",
+                "properties": {
+                    "shorthand_name": {
+                        "type": "keyword"
+                    }
+                }
+            },
+            "historical_ids": {
+                "type": "nested",
+                "properties": {
+                    "id": {
+                        "type": "long",
+                        "index": false,
+                        "doc_values": false
+                    }
+                }
+            },
+            "also_viewed": {
+                "type": "nested",
+                "properties": {
+                    "id": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "full_name": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "profile_url": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "headline": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "location": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "order_in_profile": {
+                        "type": "long",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "created_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "updated_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "deleted": {
+                        "type": "byte",
+                        "index": false,
+                        "doc_values": false
+                    }
+                }
+            },
+            "awards": {
+                "type": "nested",
+                "properties": {
+                    "id": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "title": {
+                        "type": "text"
+                    },
+                    "issuer": {
+                        "type": "text"
+                    },
+                    "description": {
+                        "type": "text"
+                    },
+                    "date": {
+                        "type": "date",
+                        "format": "MMM uuuu||uuuu",
+                        "locale": "en",
+                        "ignore_malformed": true,
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "date_year": {
+                        "type": "long",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "date_month": {
+                        "type": "long",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "date_day": {
+                        "type": "long",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "order_in_profile": {
+                        "type": "long"
+                    },
+                    "created_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "updated_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "deleted": {
+                        "type": "byte"
+                    }
+                }
+            },
+            "certifications": {
+                "type": "nested",
+                "properties": {
+                    "id": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "title": {
+                        "type": "text"
+                    },
+                    "issuer": {
+                        "type": "text"
+                    },
+                    "credential_id": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "certificate_url": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "issuer_url": {
+                        "type": "text"
+                    },
+                    "order_in_profile": {
+                        "type": "long"
+                    },
+                    "date_from": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "date_from_year": {
+                        "type": "long",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "date_from_month": {
+                        "type": "long",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "date_to": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "date_to_year": {
+                        "type": "long",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "date_to_month": {
+                        "type": "long",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "created_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "updated_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "deleted": {
+                        "type": "byte"
+                    }
+                }
+            },
+            "courses": {
+                "type": "nested",
+                "properties": {
+                    "id": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "organizer": {
+                        "type": "text"
+                    },
+                    "title": {
+                        "type": "text"
+                    },
+                    "order_in_profile": {
+                        "type": "long"
+                    },
+                    "created_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "updated_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "deleted": {
+                        "type": "byte"
+                    }
+                }
+            },
+            "course_suggestions": {
+                "type": "nested",
+                "properties": {
+                    "id": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "title": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "course_url": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "order_in_profile": {
+                        "type": "long",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "created_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "updated_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "deleted": {
+                        "type": "byte",
+                        "index": false,
+                        "doc_values": false
+                    }
+                }
+            },
+            "education": {
+                "type": "nested",
+                "properties": {
+                    "id": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "institution": {
+                        "type": "text",
+                        "fields": {
+                            "exact": {
+                                "type": "keyword",
+                                "null_value": "NULL"
+                            }
+                        }
+                    },
+                    "program": {
+                        "type": "text"
+                    },
+                    "date_from": {
+                        "type": "date",
+                        "format": "MMMM uuuu||uuuu",
+                        "locale": "en",
+                        "null_value": "1000",
+                        "ignore_malformed": true
+                    },
+                    "date_from_year": {
+                        "type": "long"
+                    },
+                    "date_from_month": {
+                        "type": "long"
+                    },
+                    "date_to": {
+                        "type": "date",
+                        "format": "MMMM uuuu||uuuu",
+                        "locale": "en",
+                        "null_value": "1000",
+                        "ignore_malformed": true
+                    },
+                    "date_to_year": {
+                        "type": "long"
+                    },
+                    "date_to_month": {
+                        "type": "long"
+                    },
+                    "activities_and_societies": {
+                        "type": "text"
+                    },
+                    "description": {
+                        "type": "text"
+                    },
+                    "institution_url": {
+                        "type": "text",
+                        "fields": {
+                            "exact": {
+                                "type": "keyword"
+                            }
+                        }
+                    },
+                    "institution_shorthand_name": {
+                        "type": "keyword"
+                    },
+                    "order_in_profile": {
+                        "type": "long"
+                    },
+                    "created_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss"
+                    },
+                    "updated_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss"
+                    },
+                    "deleted": {
+                        "type": "byte"
+                    }
+                }
+            },
+            "experience": {
+                "type": "nested",
+                "properties": {
+                    "id": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "title": {
+                        "type": "text"
+                    },
+                    "location": {
+                        "type": "text"
+                    },
+                    "company_id": {
+                        "type": "long"
+                    },
+                    "company_source_id": {
+                        "type": "long"
+                    },
+                    "company_name": {
+                        "type": "text",
+                        "fields": {
+                            "exact": {
+                                "type": "keyword",
+                                "null_value": "NULL"
+                            }
+                        }
+                    },
+                    "company_url": {
+                        "type": "text",
+                        "fields": {
+                            "exact": {
+                                "type": "keyword"
+                            }
+                        }
+                    },
+                    "company_url_shorthand_name": {
+                        "type": "keyword"
+                    },
+                    "company_url_canonical_shorthand_name": {
+                        "type": "keyword"
+                    },
+                    "company_industry": {
+                        "type": "text",
+                        "fields": {
+                            "exact": {
+                                "type": "keyword",
+                                "null_value": "NULL"
+                            }
+                        }
+                    },
+                    "company_website": {
+                        "type": "text",
+                        "fields": {
+                            "exact": {
+                                "type": "keyword",
+                                "null_value": "NULL"
+                            },
+                            "domain_only": {
+                                "type": "text"
+                            }
+                        }
+                    },
+                    "company_employees_count": {
+                        "type": "long"
+                    },
+                    "company_size": {
+                        "type": "text",
+                        "fields": {
+                            "exact": {
+                                "type": "keyword",
+                                "null_value": "NULL",
+                                "ignore_above": 256
+                            }
+                        }
+                    },
+                    "date_from": {
+                        "type": "date",
+                        "format": "MMMM uuuu||uuuu",
+                        "locale": "en",
+                        "null_value": "1000",
+                        "ignore_malformed": true
+                    },
+                    "date_from_year": {
+                        "type": "long"
+                    },
+                    "date_from_month": {
+                        "type": "long"
+                    },
+                    "date_to": {
+                        "type": "date",
+                        "format": "MMMM uuuu||uuuu",
+                        "locale": "en",
+                        "null_value": "1000",
+                        "ignore_malformed": true
+                    },
+                    "date_to_year": {
+                        "type": "long"
+                    },
+                    "date_to_month": {
+                        "type": "long"
+                    },
+                    "is_current": {
+                        "type": "byte"
+                    },
+                    "duration": {
+                        "type": "keyword"
+                    },
+                    "description": {
+                        "type": "text"
+                    },
+                    "order_in_profile": {
+                        "type": "long"
+                    },
+                    "created_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss"
+                    },
+                    "updated_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss"
+                    },
+                    "deleted": {
+                        "type": "byte"
+                    }
+                }
+            },
+            "groups": {
+                "type": "nested",
+                "properties": {
+                    "id": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "title": {
+                        "type": "text"
+                    },
+                    "url": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "order_in_profile": {
+                        "type": "long"
+                    },
+                    "created_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "updated_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "deleted": {
+                        "type": "byte"
+                    }
+                }
+            },
+            "interests": {
+                "type": "nested",
+                "properties": {
+                    "id": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "interest": {
+                        "type": "text"
+                    },
+                    "order_in_profile": {
+                        "type": "long"
+                    },
+                    "created_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "updated_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "deleted": {
+                        "type": "byte"
+                    }
+                }
+            },
+            "languages": {
+                "type": "nested",
+                "properties": {
+                    "id": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "language": {
+                        "type": "text"
+                    },
+                    "proficiency": {
+                        "type": "text"
+                    },
+                    "order_in_profile": {
+                        "type": "long"
+                    },
+                    "created_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "updated_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "deleted": {
+                        "type": "byte"
+                    }
+                }
+            },
+            "organizations": {
+                "type": "nested",
+                "properties": {
+                    "id": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "organization": {
+                        "type": "text"
+                    },
+                    "position": {
+                        "type": "text"
+                    },
+                    "description": {
+                        "type": "text"
+                    },
+                    "date_from": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "date_from_year": {
+                        "type": "long",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "date_from_month": {
+                        "type": "long",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "date_to": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "date_to_year": {
+                        "type": "long",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "date_to_month": {
+                        "type": "long",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "order_in_profile": {
+                        "type": "long",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "created_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "updated_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "deleted": {
+                        "type": "byte"
+                    }
+                }
+            },
+            "patents": {
+                "type": "nested",
+                "properties": {
+                    "id": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "title": {
+                        "type": "text"
+                    },
+                    "status": {
+                        "type": "text"
+                    },
+                    "inventors": {
+                        "type": "nested",
+                        "properties": {
+                            "full_name": {
+                                "type": "keyword",
+                                "index": false,
+                                "doc_values": false
+                            },
+                            "profile_url": {
+                                "type": "keyword",
+                                "index": false,
+                                "doc_values": false
+                            },
+                            "order_in_profile": {
+                                "type": "long",
+                                "index": false,
+                                "doc_values": false
+                            }
+                        }
+                    },
+                    "date": {
+                        "type": "date",
+                        "format": "MMM uuuu||uuuu",
+                        "locale": "en",
+                        "ignore_malformed": true,
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "date_year": {
+                        "type": "long",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "date_month": {
+                        "type": "long",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "date_day": {
+                        "type": "long",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "patent_url": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "description": {
+                        "type": "text"
+                    },
+                    "patent_or_application_number": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "order_in_profile": {
+                        "type": "long"
+                    },
+                    "created_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "updated_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "deleted": {
+                        "type": "byte"
+                    }
+                }
+            },
+            "posts_see_more_urls": {
+                "type": "nested",
+                "properties": {
+                    "id": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "url": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "order_in_profile": {
+                        "type": "long",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "created_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "updated_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "deleted": {
+                        "type": "byte",
+                        "index": false,
+                        "doc_values": false
+                    }
+                }
+            },
+            "projects": {
+                "type": "nested",
+                "properties": {
+                    "id": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "name": {
+                        "type": "text"
+                    },
+                    "project_url": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "description": {
+                        "type": "text"
+                    },
+                    "date_from": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "date_from_year": {
+                        "type": "long",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "date_from_month": {
+                        "type": "long",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "date_to": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "date_to_year": {
+                        "type": "long",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "date_to_month": {
+                        "type": "long",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "team_members": {
+                        "type": "nested",
+                        "properties": {
+                            "full_name": {
+                                "type": "keyword",
+                                "index": false,
+                                "doc_values": false
+                            },
+                            "profile_url": {
+                                "type": "keyword",
+                                "index": false,
+                                "doc_values": false
+                            },
+                            "order_in_profile": {
+                                "type": "long",
+                                "index": false,
+                                "doc_values": false
+                            }
+                        }
+                    },
+                    "order_in_profile": {
+                        "type": "long"
+                    },
+                    "created_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "updated_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "deleted": {
+                        "type": "byte"
+                    }
+                }
+            },
+            "publications": {
+                "type": "nested",
+                "properties": {
+                    "id": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "title": {
+                        "type": "text"
+                    },
+                    "publisher": {
+                        "type": "text"
+                    },
+                    "date": {
+                        "type": "date",
+                        "format": "MMM uuuu||uuuu",
+                        "locale": "en",
+                        "ignore_malformed": true,
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "date_year": {
+                        "type": "long",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "date_month": {
+                        "type": "long",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "date_day": {
+                        "type": "long",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "description": {
+                        "type": "text"
+                    },
+                    "authors": {
+                        "type": "nested",
+                        "properties": {
+                            "full_name": {
+                                "type": "keyword",
+                                "index": false,
+                                "doc_values": false
+                            },
+                            "profile_url": {
+                                "type": "keyword",
+                                "index": false,
+                                "doc_values": false
+                            },
+                            "order_in_profile": {
+                                "type": "long",
+                                "index": false,
+                                "doc_values": false
+                            }
+                        }
+                    },
+                    "publication_url": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "order_in_profile": {
+                        "type": "long"
+                    },
+                    "created_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "updated_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "deleted": {
+                        "type": "byte"
+                    }
+                }
+            },
+            "recommendations": {
+                "type": "nested",
+                "properties": {
+                    "id": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "recommendation": {
+                        "type": "text"
+                    },
+                    "full_name": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "referee_url": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "order_in_profile": {
+                        "type": "long"
+                    },
+                    "created_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "updated_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "deleted": {
+                        "type": "byte"
+                    }
+                }
+            },
+            "similar_profiles": {
+                "type": "nested",
+                "properties": {
+                    "id": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "profile_url": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "full_name": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "headline": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "location": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "order_in_profile": {
+                        "type": "long",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "created_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "updated_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "deleted": {
+                        "type": "byte",
+                        "index": false,
+                        "doc_values": false
+                    }
+                }
+            },
+            "others_named": {
+                "type": "nested",
+                "properties": {
+                    "id": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "profile_url": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "full_name": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "headline": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "location": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "order_in_profile": {
+                        "type": "long",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "created_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "updated_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "deleted": {
+                        "type": "byte",
+                        "index": false,
+                        "doc_values": false
+                    }
+                }
+            },
+            "skills": {
+                "type": "nested",
+                "properties": {
+                    "id": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "skill": {
+                        "type": "text"
+                    },
+                    "order_in_profile": {
+                        "type": "long"
+                    },
+                    "created_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "updated_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "deleted": {
+                        "type": "byte"
+                    }
+                }
+            },
+            "test_scores": {
+                "type": "nested",
+                "properties": {
+                    "id": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "title": {
+                        "type": "text"
+                    },
+                    "date": {
+                        "type": "date",
+                        "format": "MMM uuuu||uuuu",
+                        "locale": "en",
+                        "ignore_malformed": true,
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "date_year": {
+                        "type": "long",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "date_month": {
+                        "type": "long",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "date_day": {
+                        "type": "long",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "description": {
+                        "type": "text"
+                    },
+                    "score": {
+                        "type": "text"
+                    },
+                    "order_in_profile": {
+                        "type": "long"
+                    },
+                    "created_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "updated_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "deleted": {
+                        "type": "byte"
+                    }
+                }
+            },
+            "volunteering_cares": {
+                "type": "nested",
+                "properties": {
+                    "id": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "care": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "order_in_profile": {
+                        "type": "long",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "created_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "updated_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "deleted": {
+                        "type": "byte",
+                        "index": false,
+                        "doc_values": false
+                    }
+                }
+            },
+            "volunteering_opportunities": {
+                "type": "nested",
+                "properties": {
+                    "id": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "opportunity": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "order_in_profile": {
+                        "type": "long",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "created_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "updated_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "deleted": {
+                        "type": "byte",
+                        "index": false,
+                        "doc_values": false
+                    }
+                }
+            },
+            "volunteering_positions": {
+                "type": "nested",
+                "properties": {
+                    "id": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "organization": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "role": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "cause": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "date_from": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "date_from_year": {
+                        "type": "long",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "date_from_month": {
+                        "type": "long",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "date_to": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "date_to_year": {
+                        "type": "long",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "date_to_month": {
+                        "type": "long",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "duration": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "description": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "organization_url": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "organization_shorthand_name": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "order_in_profile": {
+                        "type": "long",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "created_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "updated_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "deleted": {
+                        "type": "byte",
+                        "index": false,
+                        "doc_values": false
+                    }
+                }
+            },
+            "volunteering_supports": {
+                "type": "nested",
+                "properties": {
+                    "id": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "support": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "order_in_profile": {
+                        "type": "long",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "created_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "updated_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "deleted": {
+                        "type": "byte",
+                        "index": false,
+                        "doc_values": false
+                    }
+                }
+            },
+            "websites": {
+                "type": "nested",
+                "properties": {
+                    "id": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "personal_website": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "order_in_profile": {
+                        "type": "long",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "created_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "updated_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "deleted": {
+                        "type": "byte",
+                        "index": false,
+                        "doc_values": false
+                    }
+                }
+            },
+            "activity": {
+                "type": "nested",
+                "properties": {
+                    "id": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "activity_url": {
+                        "type": "keyword",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "title": {
+                        "type": "text"
+                    },
+                    "action": {
+                        "type": "text"
+                    },
+                    "order_in_profile": {
+                        "type": "long"
+                    },
+                    "created_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "updated_at": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd HH:mm:ss",
+                        "index": false,
+                        "doc_values": false
+                    },
+                    "deleted": {
+                        "type": "byte"
+                    }
+                }
+            },
+            "hidden_details": {
+                "type": "nested",
+                "properties": {
+                    "hidden_collection": {
+                        "type": "keyword"
+                    }
+                }
+            }
+        }
+    }
+}

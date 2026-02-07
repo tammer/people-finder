@@ -1,0 +1,59 @@
+{
+    "query": {
+      "bool": {
+        "must": [
+          {
+            "bool": {
+              "should": [
+                {
+                  "match": {
+                    "active_experience_title": "software engineer"
+                  }
+                },
+                {
+                  "nested": {
+                    "path": "experience",
+                    "query": {
+                      "match": {
+                        "experience.position_title": "software engineer"
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "match": {
+              "location_full": "Toronto"
+            }
+          },
+          {
+            "nested": {
+              "path": "education",
+              "query": {
+                "bool": {
+                  "must": [
+                    {
+                      "query_string": {
+                        "query": "\"University of Toronto\" OR \"University of British Columbia\" OR \"McGill University\" OR \"University of Waterloo\" OR \"Queen's University\" OR \"University of Alberta\" OR \"Western University\" OR \"McMaster University\" OR \"University of Montreal\" OR \"University of Calgary\"",
+                        "default_field": "education.institution_name"
+                      }
+                    },
+                    {
+                      "range": {
+                        "education.date_to_year": {
+                          "gte": 2013
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+  
