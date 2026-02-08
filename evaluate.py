@@ -1,4 +1,4 @@
-from groq import get_groq_response
+from groq_client import get_groq_response
 import json
 from pathlib import Path
 
