@@ -102,3 +102,16 @@ def get_score(id: int, model_id: int = 0) -> object | None:
     if data and len(data) > 0:
         return data[0]
     return None
+
+
+def get_all_scores() -> list:
+    """Return all rows from the scores table."""
+    url = f"{_base()}/scores"
+    params = {"select": "*", "order": "created_at.desc"}
+    resp = requests.get(
+        url,
+        headers=_headers(),
+        params=params,
+    )
+    resp.raise_for_status()
+    return resp.json()

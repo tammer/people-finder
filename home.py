@@ -1,10 +1,51 @@
-from flask import Flask
+from flask import Flask, render_template_string
+
+import supa
 
 app = Flask(__name__)
 
+
 @app.route("/")
-def hello():
-    return "<h1>Hello, World!</h1>"
+def index():
+    print("Getting all scores")
+    rows = supa.get_all_scores()
+    print(f"Found {len(rows)} rows")
+    return render_template_string(
+        """
+        <!DOCTYPE html>
+        <html>
+        <head><title>Scores</title></head>
+        <body>
+        <h1>Scores</h1>
+        <table border="1" cellpadding="8">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>model_id</th>
+                <th>score</th>
+                <th>created_at</th>
+                <th>analysis</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for row in rows %}
+            <tr>
+                <td>{{ row.id }}</td>
+                <td>{{ row.model_id }}</td>
+                <td>{{ row.score }}</td>
+                <td>{{ row.created_at }}</td>
+                <td><pre>{{ row.analysis | tojson(indent=2) if row.analysis else '' }}</pre></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+        <p>{{ rows | length }} row(s)</p>
+        </body>
+        </html>
+        """,
+        rows=rows,
+    )
+
 
 if __name__ == "__main__":
     app.run(debug=True)
