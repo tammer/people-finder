@@ -48,7 +48,7 @@ def index():
                     —
                 {% endif %}
                 </td>
-                <td><pre>{{ row.analysis | tojson(indent=2) if row.analysis else '' }}</pre></td>
+                <td><pre>{% if row.analysis and row.analysis.get('justification') %}{{ row.analysis.get('justification') }}{% else %}{{ row.analysis | tojson(indent=2) if row.analysis else '' }}{% endif %}</pre></td>
             </tr>
         {% endfor %}
         </tbody>
