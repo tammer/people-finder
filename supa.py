@@ -10,10 +10,10 @@
 
 import os
 
-import dotenv
+import my_dotenv
 import requests
 
-dotenv.load_dotenv()
+my_dotenv.load_dotenv()
 
 _BASE = None
 

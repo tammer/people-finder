@@ -1,7 +1,7 @@
 import os
 
 import requests
-from dotenv import load_dotenv
+from my_dotenv import load_dotenv
 
 from supa import read_response, write_response
 
