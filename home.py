@@ -1,8 +1,36 @@
+import os
+from datetime import datetime
+from zoneinfo import ZoneInfo
+
 from flask import Flask, render_template_string
 
+import my_dotenv
 import supa
 
+my_dotenv.load_dotenv()
+
 app = Flask(__name__)
+
+
+def _human_date(iso_str):
+    if not iso_str:
+        return ""
+    try:
+        dt = datetime.fromisoformat(iso_str.replace("Z", "+00:00"))
+        tz_name = os.getenv("TZ", "").strip()
+        if tz_name:
+            try:
+                dt = dt.astimezone(ZoneInfo(tz_name))
+            except Exception:
+                dt = dt.astimezone()
+        else:
+            dt = dt.astimezone()
+        return dt.strftime("%b %d, %Y, %I:%M %p")
+    except (ValueError, TypeError):
+        return iso_str
+
+
+app.jinja_env.filters["human_date"] = _human_date
 
 
 @app.route("/")
@@ -40,7 +68,7 @@ def index():
                 <td>{{ row.id }}</td>
                 <td>{{ row.model_id }}</td>
                 <td>{{ row.score | round(0) | int }}</td>
-                <td>{{ row.created_at }}</td>
+                <td>{{ row.created_at | human_date }}</td>
                 <td>
                 {% if row.analysis and row.analysis.get('LinkedIn URL') %}
                     <a href="{{ row.analysis['LinkedIn URL'] }}" target="_blank" rel="noopener noreferrer">{{ row.response.get('full_name') if row.response and row.response.get('full_name') else 'Profile' }}</a>
