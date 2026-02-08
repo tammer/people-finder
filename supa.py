@@ -107,7 +107,7 @@ def get_score(id: int, model_id: int = 0) -> object | None:
 def get_all_scores() -> list:
     """Return all rows from the scores table."""
     url = f"{_base()}/scores"
-    params = {"select": "*", "order": "created_at.desc"}
+    params = {"select": "*", "order": "score.desc"}
     resp = requests.get(
         url,
         headers=_headers(),
