@@ -1,5 +1,5 @@
 import json
-from core_signal import search, collect
+from core_signal import search, collect, filter
 from evaluate import evaluate
 from pathlib import Path
 
@@ -32,24 +32,28 @@ def check_if_eliminated(id):
 
 
 # Load query from query1.json
-with open("query2.json", "r") as file:
+with open("filter_queries/query1.json", "r") as file:
     query = json.load(file)
 
-candidates = search(query)
+candidates = filter(query)
 
-print(len(candidates))
+# print(len(candidates))
+# print(candidates[0:10])
+# exit()
 
-for candidate in candidates:
-    if check_if_eliminated(candidate):
-        print(f"Skipping {candidate} because it has been eliminated")
-        continue
+for candidate in candidates[0:10]:
+    # if check_if_eliminated(candidate):
+    #     print(f"Skipping {candidate} because it has been eliminated")
+    #     continue
     profile = collect(candidate)
+    print(profile["linkedin_url"])
 
-    evaluation = evaluate(profile)
-    if evaluation["total_score"] < 6:
-        print(f"Eliminating {candidate} because it has a total score of {evaluation['total_score']}")
-        elinate(candidate)
-    else:
-        print(f"Keeping {candidate} because it has a total score of {evaluation['total_score']}")
-        print(evaluation)
+    # evaluation = evaluate(profile)
+    # print(profile["linkedin_url"])
+    # if evaluation["total_score"] < 6:
+    #     print(f"Eliminating {candidate} because it has a total score of {evaluation['total_score']}")
+    #     elinate(candidate)
+    # else:
+    #     print(f"Keeping {candidate} because it has a total score of {evaluation['total_score']}")
+    #     print(evaluation)
 
