@@ -39,7 +39,17 @@ async def main():
         llm=llm,
         browser=browser,
     )
-    await agent.run()
+    history = await agent.run()
+
+    print("--- History ---")
+    print(f"Successful: {history.is_successful()}")
+    print(f"Done: {history.is_done()}")
+    print(f"Steps: {history.number_of_steps()}")
+    if history.has_errors():
+        print("Errors:", history.errors())
+    if history.final_result():
+        print("Final result:", history.final_result())
+    print("History object:", history)
 
 
 if __name__ == "__main__":
