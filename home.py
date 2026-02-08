@@ -30,6 +30,7 @@ def index():
                 <th>model_id</th>
                 <th>score</th>
                 <th>created_at</th>
+                <th>LinkedIn</th>
                 <th>analysis</th>
             </tr>
         </thead>
@@ -40,6 +41,13 @@ def index():
                 <td>{{ row.model_id }}</td>
                 <td>{{ row.score }}</td>
                 <td>{{ row.created_at }}</td>
+                <td>
+                {% if row.analysis and row.analysis.get('LinkedIn URL') %}
+                    <a href="{{ row.analysis['LinkedIn URL'] }}" target="_blank" rel="noopener noreferrer">Profile</a>
+                {% else %}
+                    —
+                {% endif %}
+                </td>
                 <td><pre>{{ row.analysis | tojson(indent=2) if row.analysis else '' }}</pre></td>
             </tr>
         {% endfor %}
