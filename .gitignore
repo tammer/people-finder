@@ -209,3 +209,6 @@ __marimo__/
 # Other
 eliminated.json
 .DS_Store
+
+# Browser-use persistent profile (cookies, local storage)
+browser_profile/
