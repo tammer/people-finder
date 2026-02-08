@@ -39,7 +39,7 @@ def index():
             <tr>
                 <td>{{ row.id }}</td>
                 <td>{{ row.model_id }}</td>
-                <td>{{ row.score }}</td>
+                <td>{{ row.score | round(0) | int }}</td>
                 <td>{{ row.created_at }}</td>
                 <td>
                 {% if row.analysis and row.analysis.get('LinkedIn URL') %}
