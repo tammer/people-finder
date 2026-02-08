@@ -43,7 +43,7 @@ def index():
                 <td>{{ row.created_at }}</td>
                 <td>
                 {% if row.analysis and row.analysis.get('LinkedIn URL') %}
-                    <a href="{{ row.analysis['LinkedIn URL'] }}" target="_blank" rel="noopener noreferrer">Profile</a>
+                    <a href="{{ row.analysis['LinkedIn URL'] }}" target="_blank" rel="noopener noreferrer">{{ row.response.get('full_name') if row.response and row.response.get('full_name') else 'Profile' }}</a>
                 {% else %}
                     —
                 {% endif %}
