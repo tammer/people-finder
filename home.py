@@ -13,11 +13,17 @@ def index():
     return render_template_string(
         """
         <!DOCTYPE html>
-        <html>
-        <head><title>Scores</title></head>
+        <html lang="en">
+        <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>Scores</title>
+            <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        </head>
         <body>
         <h1>Scores</h1>
-        <table border="1" cellpadding="8">
+        <div class="scores-table-wrap">
+        <table>
         <thead>
             <tr>
                 <th>id</th>
@@ -39,7 +45,8 @@ def index():
         {% endfor %}
         </tbody>
         </table>
-        <p>{{ rows | length }} row(s)</p>
+        </div>
+        <p class="scores-count">{{ rows | length }} row(s)</p>
         </body>
         </html>
         """,
