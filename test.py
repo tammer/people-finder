@@ -17,11 +17,14 @@ candidates = filter(query)
 # print(candidates[0:10])
 # exit()
 
-for candidate in candidates[60:70]:
+count = 0
+for candidate in candidates:
     profile = collect(candidate)
-    if get_score(candidate):
-        print(f"Skipping {candidate} because it has already been scored")
-        continue
-    evaluation = evaluate(profile)
-    write_score(candidate, evaluation)
+    count += 1
+    print(f"Collected {count} profiles")
+    # if get_score(candidate):
+    #     print(f"Skipping {candidate} because it has already been scored")
+    #     continue
+    # evaluation = evaluate(profile)
+    # write_score(candidate, evaluation)
 
