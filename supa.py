@@ -104,14 +104,18 @@ def get_score(id: int, model_id: int = 0) -> object | None:
     return None
 
 
-def get_all_scores() -> list:
-    """Return all rows from the scores table."""
-    url = f"{_base()}/scores"
-    params = {"select": "*", "order": "score.desc"}
-    resp = requests.get(
+def get_scores_with_response() -> list:
+    """Return score rows joined with responses.response via Supabase RPC."""
+    url = f"{_base()}/rpc/get_scores_with_response"
+    resp = requests.post(
         url,
         headers=_headers(),
-        params=params,
+        json={},
     )
     resp.raise_for_status()
     return resp.json()
+
+
+def get_all_scores() -> list:
+    """Return all score rows with response, ordered by score descending."""
+    return get_scores_with_response()
