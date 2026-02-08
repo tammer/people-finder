@@ -17,7 +17,7 @@ candidates = filter(query)
 # print(candidates[0:10])
 # exit()
 
-for candidate in candidates[10:50]:
+for candidate in candidates[60:70]:
     profile = collect(candidate)
     if get_score(candidate):
         print(f"Skipping {candidate} because it has already been scored")
