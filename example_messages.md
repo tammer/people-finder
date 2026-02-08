@@ -26,6 +26,14 @@ I'm a former founder and now a VC at Antler. We run programs to help you launch 
 
 Would you be interested in learning more?
 
+## Example 2
+
+Hi Vivek:
+
+I'm a GP at Antler, an inception stage VC. I see you have strong technical skills and startup experience. Do you think you would ever do your own startup?
+
+We support and invest in founders very early. Please lmk if you are interested in learning more.
+
 # Examples for Guideline A
 
 ## Example 1
