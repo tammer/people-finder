@@ -52,7 +52,7 @@ def main():
         for row in rows:
             rid = row["id"]
             response = row.get("response") or {}
-            li_url = response.get("linkedin_url")
+            li_url = response.get("websites_linkedin")
 
             if li_url is None or li_url == "":
                 no_url += 1
