@@ -64,6 +64,22 @@ def read_response(id: int) -> object:
         return data[0]["response"]
     return None
 
+
+def read_response_by_li_url(li_url: str) -> object:
+    """Return the response json for the row where li_url equals the given url, or None if not found."""
+    url = f"{_base()}/responses"
+    params = {"li_url": f"eq.{li_url}", "select": "response"}
+    resp = requests.get(
+        url,
+        headers=_headers(),
+        params=params,
+    )
+    resp.raise_for_status()
+    data = resp.json()
+    if data and len(data) > 0:
+        return data[0]["response"]
+    return None
+
 def write_score(id: int, response: object, model_id: int = 0):
     """Insert or replace a score row by (id, model_id). Score is normalized to 0-100."""
     score_val = response["total_score"]
