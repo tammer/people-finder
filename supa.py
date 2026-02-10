@@ -152,9 +152,9 @@ def get_unscored_responses() -> list:
     return []
 
 
-def get_first_scored_response_without_invite() -> dict | None:
-    """Return the earliest scored response row that has no matching invite, or None if none exist."""
-    url = f"{_base()}/rpc/get_first_scored_response_without_invite"
+def get_highest_scored_response_without_invite() -> dict | None:
+    """Return the highest scored response row that has no matching invite, or None if none exist."""
+    url = f"{_base()}/rpc/get_highest_scored_response_without_invite"
     resp = requests.post(
         url,
         headers=_headers(),
@@ -167,3 +167,14 @@ def get_first_scored_response_without_invite() -> dict | None:
     if isinstance(data, list) and len(data) > 0:
         return data[0]
     return None
+
+def set_invite_sent(id: int) -> bool:
+    """Set the invite_sent_at column for the given id to the current timestamp."""
+    url = f"{_base()}/rpc/set_invite_sent"
+    resp = requests.post(
+        url,
+        headers=_headers(),
+        json={"p_id": id},
+    )
+    resp.raise_for_status()
+    return resp.json()
