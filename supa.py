@@ -135,3 +135,20 @@ def get_scores_with_response() -> list:
 def get_all_scores() -> list:
     """Return all score rows with response, ordered by score descending."""
     return get_scores_with_response()
+
+
+def get_first_response_without_invite() -> dict | None:
+    """Return the earliest response row that has no matching invite, or None if none exist."""
+    url = f"{_base()}/rpc/get_first_response_without_invite"
+    resp = requests.post(
+        url,
+        headers=_headers(),
+        json={},
+    )
+    resp.raise_for_status()
+    data = resp.json()
+    if isinstance(data, dict):
+        return data
+    if isinstance(data, list) and len(data) > 0:
+        return data[0]
+    return None

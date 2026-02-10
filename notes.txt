@@ -14,5 +14,16 @@ totally autommatable if linkedin emails are sent to us.
 
 table
 
-ID, li url, invite_sent_at, accepted_at, messaged_at
+
+
+Get a profile
+    if cache is empty, get a new one?
+
+score it
+if score > X, connect to it.
+
+
+
+on connect confirm, message it
+
 
