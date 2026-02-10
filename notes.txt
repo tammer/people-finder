@@ -1,0 +1,18 @@
+connect
+
+log id and url of person we connected to (and name?)
+
+linkedin emails be about the acceptance of the connection request
+
+figure out who it was and update the table to "connecttion accepted"
+next column is "message sent" bool and date of acceptance
+
+1 day later you blast them
+
+totally autommatable if linkedin emails are sent to us.
+
+
+table
+
+ID, li url, invite_sent_at, accepted_at, messaged_at
+
