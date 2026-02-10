@@ -1,30 +1,14 @@
-import json
-from core_signal import search, collect, filter
+# get all unscored responses
+# score them
+# write the scores to the scores table
+
+from supa import get_unscored_responses, write_score
 from evaluate import evaluate
-from pathlib import Path
-from supa import write_score, get_score
 
-
-
-
-# Load query from query1.json
-with open("filter_queries/query1.json", "r") as file:
-    query = json.load(file)
-
-candidates = filter(query)
-
-# print(len(candidates))
-# print(candidates[0:10])
-# exit()
-
-count = 0
-for candidate in candidates:
-    profile = collect(candidate)
-    count += 1
-    print(f"Collected {count} profiles")
-    # if get_score(candidate):
-    #     print(f"Skipping {candidate} because it has already been scored")
-    #     continue
-    # evaluation = evaluate(profile)
-    # write_score(candidate, evaluation)
-
+responses = get_unscored_responses()
+print(f"Found {len(responses)} unscored responses")
+for response in responses:
+    print(f"Scoring {response['id']}")
+    score = evaluate(response['response'])
+    write_score(response['id'], score)
+    print(f"Scored {response['id']} with score {score['total_score']}")

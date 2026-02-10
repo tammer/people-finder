@@ -137,6 +137,21 @@ def get_all_scores() -> list:
     return get_scores_with_response()
 
 
+def get_unscored_responses() -> list:
+    """Return all responses that have no matching score, ordered by created_at ascending."""
+    url = f"{_base()}/rpc/get_unscored_responses"
+    resp = requests.post(
+        url,
+        headers=_headers(),
+        json={},
+    )
+    resp.raise_for_status()
+    data = resp.json()
+    if isinstance(data, list):
+        return data
+    return []
+
+
 def get_first_scored_response_without_invite() -> dict | None:
     """Return the earliest scored response row that has no matching invite, or None if none exist."""
     url = f"{_base()}/rpc/get_first_scored_response_without_invite"
