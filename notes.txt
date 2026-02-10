@@ -1,3 +1,14 @@
+becomes batches?
+
+load up the response table
+load up the scores table
+process the scores table
+
+
+
+
+
+
 connect
 
 log id and url of person we connected to (and name?)

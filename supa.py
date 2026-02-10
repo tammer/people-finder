@@ -137,9 +137,9 @@ def get_all_scores() -> list:
     return get_scores_with_response()
 
 
-def get_first_response_without_invite() -> dict | None:
-    """Return the earliest response row that has no matching invite, or None if none exist."""
-    url = f"{_base()}/rpc/get_first_response_without_invite"
+def get_first_scored_response_without_invite() -> dict | None:
+    """Return the earliest scored response row that has no matching invite, or None if none exist."""
+    url = f"{_base()}/rpc/get_first_scored_response_without_invite"
     resp = requests.post(
         url,
         headers=_headers(),
