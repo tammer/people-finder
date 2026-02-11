@@ -101,12 +101,13 @@ def write_score(id: int, response: object, model_id: int = 0):
     resp.raise_for_status()
 
 def get_score(id: int, model_id: int = 0) -> object | None:
-    """Return the score row for the given (id, model_id), or None if not found."""
+    """Return the score row for the given (id, model_id), or None if not found. Orders by created_at DESC."""
     url = f"{_base()}/scores"
     params = {
         "id": f"eq.{id}",
         "model_id": f"eq.{model_id}",
         "select": "score,analysis,created_at",
+        "order": "created_at.desc",
     }
     resp = requests.get(
         url,

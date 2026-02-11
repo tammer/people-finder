@@ -60,6 +60,7 @@ def index():
                 <th>created_at</th>
                 <th>LinkedIn</th>
                 <th>analysis</th>
+                <!-- <th>Full Name</th> -->
             </tr>
         </thead>
         <tbody>
@@ -77,6 +78,7 @@ def index():
                 {% endif %}
                 </td>
                 <td><pre>{% if row.analysis and row.analysis.get('justification') %}{{ row.analysis.get('justification') }}{% else %}{{ row.analysis | tojson(indent=2) if row.analysis else '' }}{% endif %}</pre></td>
+                <!-- <td>{{ row.analysis }}</td> -->
             </tr>
         {% endfor %}
         </tbody>
