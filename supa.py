@@ -179,3 +179,15 @@ def set_invite_sent(id: int) -> bool:
     )
     resp.raise_for_status()
     return resp.json()
+
+
+def set_invite_accepted(id: int) -> bool:
+    """Set the accepted_at column for the given invite id to the current timestamp."""
+    url = f"{_base()}/rpc/set_invite_accepted"
+    resp = requests.post(
+        url,
+        headers=_headers(),
+        json={"p_id": id},
+    )
+    resp.raise_for_status()
+    return resp.json()
