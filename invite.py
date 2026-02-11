@@ -9,6 +9,20 @@ if response is None:
 
 response = response.get("response")
 
+print("ID", response.get("id"))
+score = get_score(response.get("id")).get("score")
+print("score", round(score))
+
+location_country = response.get("location_country")
+
+if location_country is None:
+    print("No location country found")
+    exit(1)
+
+if location_country != "Canada":
+    print("Not in Canada")
+    exit(1)
+
 url = response.get("linkedin_url") or response.get("websites_linkedin")
 
 print(f"Connecting to {url}")
