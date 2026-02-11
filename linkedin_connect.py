@@ -28,11 +28,16 @@ async def _connect_async(who: str) -> bool:
         profile_directory="Default",
     )
     task = (
-    f"Check if {who}'s profile already says 'Pending' or 'Invitation sent'. "
-    "If so, the task is a SUCCESS. Otherwise, press the 'Connect' button. "
-    "If 'Connect' is not visible, look for it under the 'More' button. "
-    "Press 'Connect' and then 'Send without note'. "
-    "VERIFICATION: If the text 'Pending' or 'Invitation sent' appears, the task is a SUCCESS."
+    f"1. INITIAL CHECK: If {who}'s profile already displays 'Pending' or 'Invitation sent', "
+    "stop and return SUCCESS.\n"
+    "2. FIND CONNECT: Locate the 'Connect' button. If it is not visible, click 'More' to find it. "
+    "Click 'Connect'.\n"
+    "3. SECURITY CHECK: If prompted to enter an email to 'verify this member knows you', "
+    "stop and return FAIL.\n"
+    "4. SENDING: If a 'Send without note' button is visible, click it. "
+    "If 'Send without note' is NOT visible, stop and return FAIL.\n"
+    "5. VERIFICATION: After clicking, confirm the profile now displays 'Pending' or 'Invitation sent'. "
+    "If confirmed, return SUCCESS."
     )
     agent = Agent(task=task, llm=llm, browser=browser)
     history = await agent.run()
