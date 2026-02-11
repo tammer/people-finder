@@ -191,3 +191,18 @@ def set_invite_accepted(id: int) -> bool:
     )
     resp.raise_for_status()
     return resp.json()
+
+
+def get_accepted_unmessaged_invites() -> list[int]:
+    """Return a list of invite ids that are accepted but not yet messaged, ordered by accepted_at ascending."""
+    url = f"{_base()}/rpc/get_accepted_unmessaged_invites"
+    resp = requests.post(
+        url,
+        headers=_headers(),
+        json={},
+    )
+    resp.raise_for_status()
+    data = resp.json()
+    if isinstance(data, list):
+        return [row["id"] for row in data if "id" in row]
+    return []

@@ -4,12 +4,7 @@ import supa
 
 from groq_client import get_groq_response
 
-def response_for_url(url: str) -> object:
-    """Return the response from the responses table where li_url equals the given url, or None if not found."""
-    return supa.read_response_by_li_url(url)
-
-
-def compose_intro_message(user_prompt: object) -> str:
+def _compose_intro_message(user_prompt: object) -> str:
     system_prompt = """
     You will compose an introductory message from me to the person in the prompt.
     First you will determine if this person is currently a founder of a startup.
@@ -28,21 +23,12 @@ def compose_intro_message(user_prompt: object) -> str:
 with open('example_messages.md', 'r') as file:
     example_messages = file.read()
 
-while True:
-    # prompt the user for the LinkedIn URL
-    id = input('Enter LinkedIn URL: ').strip()
-    # remove any trailing slashes
-    id = id.rstrip('/')
-    # ensure it is a valid linkedin url
-    if not id.startswith('https://www.linkedin.com/in/'):
-        print('Invalid LinkedIn URL')
-        continue
 
-    response = response_for_url(id)
-
+def craft_message(id: int) -> str:
+    response = supa.read_response(id)
     if response is None:
-        print(f"No response found for URL: {id}")
-        continue
+        print(f"No response found for ID: {id}")
+        return None
 
     user_prompt = {
         "Guideline A": """
@@ -60,11 +46,4 @@ while True:
         "target": response
     }
 
-    print(compose_intro_message(user_prompt))
-
-    while True:
-        again = input('Generate a different response? (y/n): ').strip().lower()
-        if again == 'y':
-            print(compose_intro_message(user_prompt))
-        else:
-            break
+    return _compose_intro_message(user_prompt)
