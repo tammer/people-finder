@@ -32,6 +32,7 @@ result = connect_to(url)
 if result:
     set_invite_sent(response['id'])
     print("Invite sent")
+    print("score", round(score))
 else:
     print("Failed to connect to LinkedIn")
     exit(1)

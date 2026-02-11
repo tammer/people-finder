@@ -28,7 +28,9 @@ async def _connect_async(who: str) -> bool:
         profile_directory="Default",
     )
     task = (
-    f"1. INITIAL CHECK: If {who}'s profile already displays 'Pending' or 'Invitation sent', "
+    f"1a. INITIAL CHECK: If {who}'s profile already displays 'Pending' or 'Invitation sent', "
+    "stop and return SUCCESS.\n"
+    "1b. INITIAL CHECK: If {who}'s profile has the test '1st' beside their name, "
     "stop and return SUCCESS.\n"
     "2. FIND CONNECT: Locate the 'Connect' button. If it is not visible, click 'More' to find it. "
     "Click 'Connect'.\n"
