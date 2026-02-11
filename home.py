@@ -1,3 +1,7 @@
+# This is just the silly visualizer I wrote for a quick and diry view.
+# not really maintainable.
+
+
 import os
 from datetime import datetime
 from zoneinfo import ZoneInfo
