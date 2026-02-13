@@ -206,3 +206,20 @@ def get_accepted_unmessaged_invites() -> list[int]:
     if isinstance(data, list):
         return [row["id"] for row in data if "id" in row]
     return []
+
+
+def get_invites() -> list:
+    """Return all invites sorted by accepted_at ascending (oldest first), joined with responses (response, li_url)."""
+    url = f"{_base()}/invites"
+    params = {
+        "select": "*,responses(response,li_url)",
+        "order": "accepted_at.asc",
+    }
+    resp = requests.get(
+        url,
+        headers=_headers(),
+        params=params,
+    )
+    resp.raise_for_status()
+    data = resp.json()
+    return data if isinstance(data, list) else []
