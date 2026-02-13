@@ -12,6 +12,8 @@ def _compose_intro_message(user_prompt: object) -> str:
     If they were a fonder in the past but are not now, use Guideline B.
     If they have never been a founder, use Guideline C
     The tone of the message is a short brief hello from me where you communicate that I am an inception stage VC and am happy to tell them more about how we support startups at the idea stage with upto $500,000 in funding.
+    You will compose four versions of the message using different words and phrases.
+    return the results as a JSON list.
     """
     user_prompt = f"""
     {json.dumps(user_prompt)}
@@ -46,4 +48,9 @@ def craft_message(id: int) -> str:
         "target": response
     }
 
-    return _compose_intro_message(user_prompt)
+    response_str = _compose_intro_message(user_prompt)
+    try:
+        response_json = json.loads(response_str)
+    except Exception:
+        response_json = response_str
+    return response_json

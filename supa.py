@@ -208,6 +208,16 @@ def set_invite_accepted(id: int) -> bool:
     resp.raise_for_status()
     return resp.json()
 
+def set_message_sent(id: int) -> bool:
+    """Set the messaged_at column for the given invite id to the current timestamp."""
+    url = f"{_base()}/rpc/set_message_sent"
+    resp = requests.post(
+        url,
+        headers=_headers(),
+        json={"p_id": id},
+    )
+    resp.raise_for_status()
+    return resp.json()
 
 def get_accepted_unmessaged_invites() -> list[int]:
     """Return a list of invite ids that are accepted but not yet messaged, ordered by accepted_at ascending."""

@@ -90,6 +90,12 @@ def invites():
     )
 
 
+@app.route("/compose/<int:id>/mark-sent", methods=["POST"])
+def mark_sent(id):
+    supa.set_message_sent(id)
+    return "", 204
+
+
 @app.route("/compose/<int:id>")
 def compose(id):
     output = craft_message(id)
@@ -97,6 +103,7 @@ def compose(id):
         return render_template_string(
             "<!DOCTYPE html><html><body><p>No response found for this ID.</p></body></html>"
         ), 404
+    messages = output if isinstance(output, list) else [output]
     li_url = supa.get_li_url(id)
     return render_template_string(
         """
@@ -110,33 +117,47 @@ def compose(id):
         </head>
         <body>
         <h1>Compose</h1>
-        <p id="copy-status" style="font-size: 0.875rem; color: #64748b; margin-bottom: 0.5rem;"></p>
         <div style="width: 65ch; max-width: 100%;">
-        <pre id="compose-output" style="white-space: pre-wrap; word-break: break-word;">{{ output }}</pre>
+        {% for msg in messages %}
+        <div class="compose-message" style="margin-bottom: 1.5rem;">
+            <pre style="white-space: pre-wrap; word-break: break-word;">{{ msg }}</pre>
+            <div style="text-align: right;"><button type="button" class="copy-btn" data-index="{{ loop.index0 }}">Message and Mark</button></div>
+        </div>
+        {% endfor %}
         </div>
         {% if li_url %}
         <p style="margin-top: 1rem;"><a href="{{ li_url }}" target="_blank" rel="noopener noreferrer">{{ li_url }}</a></p>
         {% endif %}
         <script>
         (function() {
-            var text = {{ output | tojson }};
-            var status = document.getElementById('copy-status');
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(text).then(function() {
-                    status.textContent = 'Copied to clipboard.';
-                }).catch(function() {
-                    status.textContent = 'Could not copy to clipboard.';
+            var messages = {{ messages | tojson }};
+            var liUrl = {{ li_url | tojson }};
+            var markSentUrl = {{ url_for('mark_sent', id=compose_id) | tojson }};
+            document.querySelectorAll('.copy-btn').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var i = parseInt(this.getAttribute('data-index'), 10);
+                    var text = messages[i];
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(text).then(function() {
+                            var label = btn.textContent;
+                            btn.textContent = 'Marked';
+                            setTimeout(function() { btn.textContent = label; }, 1500);
+                        }).catch(function() {});
+                    }
+                    if (liUrl) {
+                        window.open(liUrl, '_blank', 'noopener,noreferrer');
+                    }
+                    fetch(markSentUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' } });
                 });
-            } else {
-                status.textContent = 'Clipboard not available.';
-            }
+            });
         })();
         </script>
         </body>
         </html>
         """,
-        output=output,
+        messages=messages,
         li_url=li_url,
+        compose_id=id,
     )
 
 
