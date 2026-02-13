@@ -97,6 +97,7 @@ def compose(id):
         return render_template_string(
             "<!DOCTYPE html><html><body><p>No response found for this ID.</p></body></html>"
         ), 404
+    li_url = supa.get_li_url(id)
     return render_template_string(
         """
         <!DOCTYPE html>
@@ -113,6 +114,9 @@ def compose(id):
         <div style="width: 65ch; max-width: 100%;">
         <pre id="compose-output" style="white-space: pre-wrap; word-break: break-word;">{{ output }}</pre>
         </div>
+        {% if li_url %}
+        <p style="margin-top: 1rem;"><a href="{{ li_url }}" target="_blank" rel="noopener noreferrer">{{ li_url }}</a></p>
+        {% endif %}
         <script>
         (function() {
             var text = {{ output | tojson }};
@@ -132,6 +136,7 @@ def compose(id):
         </html>
         """,
         output=output,
+        li_url=li_url,
     )
 
 

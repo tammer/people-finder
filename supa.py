@@ -65,6 +65,22 @@ def read_response(id: int) -> object:
     return None
 
 
+def get_li_url(id: int) -> str | None:
+    """Return the li_url for the given response id, or None if not found."""
+    url = f"{_base()}/responses"
+    params = {"id": f"eq.{id}", "select": "li_url"}
+    resp = requests.get(
+        url,
+        headers=_headers(),
+        params=params,
+    )
+    resp.raise_for_status()
+    data = resp.json()
+    if data and len(data) > 0:
+        return data[0].get("li_url")
+    return None
+
+
 def read_response_by_li_url(li_url: str) -> object:
     """Return the response json for the row where li_url equals the given url, or None if not found."""
     url = f"{_base()}/responses"
