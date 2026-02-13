@@ -109,9 +109,25 @@ def compose(id):
         </head>
         <body>
         <h1>Compose</h1>
+        <p id="copy-status" style="font-size: 0.875rem; color: #64748b; margin-bottom: 0.5rem;"></p>
         <div style="width: 65ch; max-width: 100%;">
-        <pre style="white-space: pre-wrap; word-break: break-word;">{{ output }}</pre>
+        <pre id="compose-output" style="white-space: pre-wrap; word-break: break-word;">{{ output }}</pre>
         </div>
+        <script>
+        (function() {
+            var text = {{ output | tojson }};
+            var status = document.getElementById('copy-status');
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(function() {
+                    status.textContent = 'Copied to clipboard.';
+                }).catch(function() {
+                    status.textContent = 'Could not copy to clipboard.';
+                });
+            } else {
+                status.textContent = 'Clipboard not available.';
+            }
+        })();
+        </script>
         </body>
         </html>
         """,
